@@ -15,7 +15,7 @@ set_time_limit(0);
 define('PKG_NAME','CodeMirror');
 define('PKG_NAMESPACE',strtolower(PKG_NAME));
 define('PKG_VERSION','1.0.0');
-define('PKG_RELEASE','beta1');
+define('PKG_RELEASE','rc1');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';
@@ -49,7 +49,7 @@ $plugin= $modx->newObject('modPlugin');
 $plugin->set('id',1);
 $plugin->set('name', PKG_NAME);
 $plugin->set('description', PKG_NAME.' '.PKG_VERSION.'-'.PKG_RELEASE.' plugin for MODx Revolution');
-$plugin->set('plugincode', file_get_contents($sources['source_core'] . '/plugin.'.PKG_NAMESPACE.'.php'));
+$plugin->set('plugincode', file_get_contents($sources['source_core'] . '/elements/plugins/plugin.'.PKG_NAMESPACE.'.php'));
 $plugin->set('category', 0);
 
 /* add plugin events */

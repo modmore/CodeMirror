@@ -2,4 +2,5 @@ Changelog for CodeMirror integration into MODx Revolution.
 
 CodeMirror 1.0.0
 ====================================
+- Prepared for rc1 release
 - Initial commit
