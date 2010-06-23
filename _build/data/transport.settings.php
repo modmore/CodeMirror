@@ -5,9 +5,9 @@
  */
 $settings = array();
 
-$settings['codem.enable']= $modx->newObject('modSystemSetting');
-$settings['codem.enable']->fromArray(array(
-    'key' => 'codem.enable',
+$settings['codemirror.enable']= $modx->newObject('modSystemSetting');
+$settings['codemirror.enable']->fromArray(array(
+    'key' => 'codemirror.enable',
     'value' => 1,
     'xtype' => 'combo-boolean',
     'namespace' => 'codemirror',

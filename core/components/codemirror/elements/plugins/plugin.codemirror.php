@@ -12,9 +12,9 @@ if ($modx->event->name == 'OnRichTextEditorRegister') {
 
 //if ($modx->getOption('which_editor',null,false) != 'CodeMirror') return;
 if (!$modx->getOption('use_editor',null,true)) return;
-if (!$modx->getOption('codem.enable',null,true)) return;
+if (!$modx->getOption('codemirror.enable',null,true)) return;
 
-$assetsUrl = $modx->getOption('codem.assets_url',$scriptProperties,$modx->getOption('assets_url').'components/codemirror/');
+$assetsUrl = $modx->getOption('codemirror.assets_url',$scriptProperties,$modx->getOption('assets_url').'components/codemirror/');
 
 switch ($modx->event->name) {
     case 'OnSnipFormPrerender':
