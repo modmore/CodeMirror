@@ -10,7 +10,7 @@ $settings['codem.enable']->fromArray(array(
     'key' => 'codem.enable',
     'value' => 1,
     'xtype' => 'combo-boolean',
-    'namespace' => 'codem',
+    'namespace' => 'codemirror',
     'area' => 'Editor',
 ),'',true,true);
 
