@@ -16,12 +16,12 @@ $evs = array(
 );
 
 foreach ($evs as $ev) {
-    $events[$ev] = $modx->newObject('modPluginEvent');
-    $events[$ev]->fromArray(array(
-        'event' => $ev,
+    $events[(string)$ev] = $modx->newObject('modPluginEvent');
+    $events[(string)$ev]->fromArray(array(
+        'event' => (string)$ev,
         'priority' => 0,
         'propertyset' => 0,
-    ));
+    ),'',true,true);
 }
 
 return $events;

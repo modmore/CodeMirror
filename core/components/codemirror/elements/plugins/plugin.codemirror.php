@@ -14,24 +14,30 @@ if ($modx->event->name == 'OnRichTextEditorRegister') {
 if (!$modx->getOption('use_editor',null,true)) return;
 if (!$modx->getOption('codem.enable',null,true)) return;
 
+$assetsUrl = $modx->getOption('codem.assets_url',$scriptProperties,$modx->getOption('assets_url').'components/codem/');
+
 switch ($modx->event->name) {
     case 'OnSnipFormPrerender':
         $modx->regClientCSS($modx->getOption('codem.assets_url').'css/cm.css');
+        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codemPath = "'.$assetsUrl.'";</script>');
         $modx->regClientStartupScript($modx->getOption('codem.assets_url').'cm/js/codemirror.js');
         $modx->regClientStartupScript($modx->getOption('codem.assets_url').'js/forms/snippet.js');
         break;
     case 'OnTempFormPrerender':
         $modx->regClientCSS($modx->getOption('codem.assets_url').'css/cm.css');
+        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codemPath = "'.$assetsUrl.'";</script>');
         $modx->regClientStartupScript($modx->getOption('codem.assets_url').'cm/js/codemirror.js');
         $modx->regClientStartupScript($modx->getOption('codem.assets_url').'js/forms/template.js');
         break;
     case 'OnChunkFormPrerender':
         $modx->regClientCSS($modx->getOption('codem.assets_url').'css/cm.css');
+        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codemPath = "'.$assetsUrl.'";</script>');
         $modx->regClientStartupScript($modx->getOption('codem.assets_url').'cm/js/codemirror.js');
         $modx->regClientStartupScript($modx->getOption('codem.assets_url').'js/forms/chunk.js');
         break;
     case 'OnPluginFormPrerender':
         $modx->regClientCSS($modx->getOption('codem.assets_url').'css/cm.css');
+        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codemPath = "'.$assetsUrl.'";</script>');
         $modx->regClientStartupScript($modx->getOption('codem.assets_url').'cm/js/codemirror.js');
         $modx->regClientStartupScript($modx->getOption('codem.assets_url').'js/forms/plugin.js');
         break;

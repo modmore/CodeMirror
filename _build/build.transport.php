@@ -53,18 +53,19 @@ $plugin->set('plugincode', file_get_contents($sources['source_core'] . '/element
 $plugin->set('category', 0);
 
 /* add plugin events */
-$modx->log(xPDO::LOG_LEVEL_INFO,'Packaging in Plugin Events...'); flush();
 $events = include $sources['data'].'transport.plugin.events.php';
 if (is_array($events) && !empty($events)) {
     $plugin->addMany($events);
 } else {
     $modx->log(xPDO::LOG_LEVEL_ERROR,'Could not find plugin events!');
 }
+$modx->log(xPDO::LOG_LEVEL_INFO,'Packaged in '.count($events).' Plugin Events.'); flush();
+unset($events);
 
 /* load plugin properties */
-$modx->log(xPDO::LOG_LEVEL_INFO,'Setting Plugin Properties...'); flush();
 $properties = include $sources['data'].'properties.inc.php';
 $plugin->setProperties($properties);
+$modx->log(xPDO::LOG_LEVEL_INFO,'Setting '.count($properties).' Plugin Properties.'); flush();
 
 $attributes= array(
     xPDOTransport::UNIQUE_KEY => 'name',
@@ -104,13 +105,14 @@ foreach ($settings as $setting) {
     $vehicle = $builder->createVehicle($setting,$attributes);
     $builder->putVehicle($vehicle);
 }
+$modx->log(xPDO::LOG_LEVEL_INFO,'Packaged in '.count($settings).' System Settings.'); flush();
 
 /* now pack in the license file, readme and setup options */
-$modx->log(xPDO::LOG_LEVEL_INFO,'Setting Package Attributes...'); flush();
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
 ));
+$modx->log(xPDO::LOG_LEVEL_INFO,'Set Package Attributes.'); flush();
 
 $modx->log(xPDO::LOG_LEVEL_INFO,'Zipping up package...'); flush();
 $builder->pack();

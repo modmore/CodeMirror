@@ -1,7 +1,7 @@
 MODx.onLoadEditor = function() {
     if (MODx.rteInitialized) return false;
 
-    var cp = MODx.config['codem.assets_url']+'cm/';
+    var cp = MODx.codemPath+'cm/';
 
     MODx.editor = CodeMirror.fromTextArea('modx-template-content', {
         parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js",
