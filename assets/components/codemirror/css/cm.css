@@ -1,0 +1,18 @@
+.CodeMirror-line-numbers {
+    background-color: #eee;
+    color: #aaa;
+    font-family: monospace;
+    font-size: 10pt;
+    padding: 4px 0.3em 4px 0;
+    width: 2.2em;
+    line-height: 1.2;
+    padding-right: 0.3em;
+    text-align: right;
+}
+.CodeMirror-wrapping {
+    padding: 0;
+}
+
+#x-form-el-modx-snippet-snippet, #x-form-el-modx-plugin-plugincode, #x-form-el-modx-chunk-snippet, #x-form-el-modx-template-content {
+    border: 1px solid #ddd;
+}
