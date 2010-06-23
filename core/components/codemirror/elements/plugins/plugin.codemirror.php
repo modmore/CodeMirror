@@ -14,7 +14,7 @@ if ($modx->event->name == 'OnRichTextEditorRegister') {
 if (!$modx->getOption('use_editor',null,true)) return;
 if (!$modx->getOption('codem.enable',null,true)) return;
 
-$assetsUrl = $modx->getOption('codem.assets_url',$scriptProperties,$modx->getOption('assets_url').'components/codem/');
+$assetsUrl = $modx->getOption('codem.assets_url',$scriptProperties,$modx->getOption('assets_url').'components/codemirror/');
 
 switch ($modx->event->name) {
     case 'OnSnipFormPrerender':
