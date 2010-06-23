@@ -18,28 +18,28 @@ $assetsUrl = $modx->getOption('codem.assets_url',$scriptProperties,$modx->getOpt
 
 switch ($modx->event->name) {
     case 'OnSnipFormPrerender':
-        $modx->regClientCSS($modx->getOption('codem.assets_url').'css/cm.css');
+        $modx->regClientCSS($assetsUrl.'css/cm.css');
         $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codemPath = "'.$assetsUrl.'";</script>');
-        $modx->regClientStartupScript($modx->getOption('codem.assets_url').'cm/js/codemirror.js');
-        $modx->regClientStartupScript($modx->getOption('codem.assets_url').'js/forms/snippet.js');
+        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
+        $modx->regClientStartupScript($assetsUrl.'js/forms/snippet.js');
         break;
     case 'OnTempFormPrerender':
-        $modx->regClientCSS($modx->getOption('codem.assets_url').'css/cm.css');
+        $modx->regClientCSS($assetsUrl.'css/cm.css');
         $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codemPath = "'.$assetsUrl.'";</script>');
-        $modx->regClientStartupScript($modx->getOption('codem.assets_url').'cm/js/codemirror.js');
-        $modx->regClientStartupScript($modx->getOption('codem.assets_url').'js/forms/template.js');
+        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
+        $modx->regClientStartupScript($assetsUrl.'js/forms/template.js');
         break;
     case 'OnChunkFormPrerender':
-        $modx->regClientCSS($modx->getOption('codem.assets_url').'css/cm.css');
+        $modx->regClientCSS($assetsUrl.'css/cm.css');
         $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codemPath = "'.$assetsUrl.'";</script>');
-        $modx->regClientStartupScript($modx->getOption('codem.assets_url').'cm/js/codemirror.js');
-        $modx->regClientStartupScript($modx->getOption('codem.assets_url').'js/forms/chunk.js');
+        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
+        $modx->regClientStartupScript($assetsUrl.'js/forms/chunk.js');
         break;
     case 'OnPluginFormPrerender':
-        $modx->regClientCSS($modx->getOption('codem.assets_url').'css/cm.css');
+        $modx->regClientCSS($assetsUrl.'css/cm.css');
         $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codemPath = "'.$assetsUrl.'";</script>');
-        $modx->regClientStartupScript($modx->getOption('codem.assets_url').'cm/js/codemirror.js');
-        $modx->regClientStartupScript($modx->getOption('codem.assets_url').'js/forms/plugin.js');
+        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
+        $modx->regClientStartupScript($assetsUrl.'js/forms/plugin.js');
         break;
     /* debated whether or not to use */
     case 'OnRichTextEditorInit':
