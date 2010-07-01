@@ -236,7 +236,8 @@ var CodeMirror = (function(){
     },
     setTextWrapping: function(on) {
       if (on == this.options.textWrapping) return;
-      this.win.document.body.style.whiteSpace = on ? "" : "nowrap";
+      var z = this.win.document.body;
+      if (z) { z.style.whiteSpace = on ? "" : "nowrap"; }
       this.options.textWrapping = on;
       if (this.lineNumbers) {
         this.setLineNumbers(false);
@@ -432,7 +433,7 @@ var CodeMirror = (function(){
   };
 
   CodeMirror.fromTextArea = function(area, options) {
-    if (typeof area == "string")
+  if (typeof area == "string")
       area = document.getElementById(area);
 
     options = options || {};

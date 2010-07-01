@@ -10,7 +10,8 @@ $evs = array(
     'OnPluginFormPrerender',
     'OnSnipFormPrerender',
     'OnTempFormPrerender',
-    //'OnRichTextEditorRegister',
+    'OnTVFormPrerender',
+    'OnRichTextEditorRegister',
     //'OnRichTextEditorInit',
     //'OnRichTextBrowserInit',
 );

@@ -13,6 +13,12 @@
     padding: 0;
 }
 
-#x-form-el-modx-snippet-snippet, #x-form-el-modx-plugin-plugincode, #x-form-el-modx-chunk-snippet, #x-form-el-modx-template-content {
+#x-form-el-modx-snippet-snippet,
+#x-form-el-modx-plugin-plugincode,
+#x-form-el-modx-chunk-snippet,
+#x-form-el-modx-template-content {
+    border: 1px solid #ddd;
+}
+#x-form-el-modx-tv-default-text .CodeMirror-wrapping {
     border: 1px solid #ddd;
 }

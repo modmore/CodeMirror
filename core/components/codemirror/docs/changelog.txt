@@ -2,5 +2,8 @@ Changelog for CodeMirror integration into MODx Revolution.
 
 CodeMirror 1.0.0
 ====================================
+- Added plugin properties to adjust how CodeMirror behaves
+- Now works on TV default value fields
+- Consolidated JS files, fixed too-fast loading in Chrome issue
 - Prepared for rc1 release
 - Initial commit
