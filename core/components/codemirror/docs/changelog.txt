@@ -1,5 +1,9 @@
 Changelog for CodeMirror integration into MODx Revolution.
 
+CodeMirror 1.0.1
+====================================
+- Now auto-assigns which_element_editor to CodeMirror
+
 CodeMirror 1.0.0
 ====================================
 - Added plugin properties to adjust how CodeMirror behaves
