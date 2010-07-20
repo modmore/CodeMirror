@@ -11,6 +11,7 @@ $evs = array(
     'OnSnipFormPrerender',
     'OnTempFormPrerender',
     'OnTVFormPrerender',
+    'OnFileEditFormPrerender',
     'OnRichTextEditorRegister',
     //'OnRichTextEditorInit',
     //'OnRichTextBrowserInit',

@@ -37,6 +37,9 @@ var Codem = function() {
         ,onTV: function() {
             return Codem.init('modx-tv-default-text','modx-panel-tv');
         }
+        ,onFile: function() {
+            return Codem.init('modx-file-content','modx-panel-file-edit');
+        }
     };
 }();
 

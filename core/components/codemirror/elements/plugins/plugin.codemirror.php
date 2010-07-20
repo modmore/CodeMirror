@@ -59,6 +59,13 @@ switch ($modx->event->name) {
         $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
         $modx->regClientStartupScript($assetsUrl.'js/cm.js');
         break;
+    case 'OnFileEditFormPrerender':
+        $options['modx_loader'] = 'onFile';
+        $modx->regClientCSS($assetsUrl.'css/cm.css');
+        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
+        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
+        $modx->regClientStartupScript($assetsUrl.'js/cm.js');
+        break;
     /* debated whether or not to use */
     case 'OnRichTextEditorInit':
         break;

@@ -1,5 +1,9 @@
 Changelog for CodeMirror integration into MODx Revolution.
 
+CodeMirror 1.1.0
+====================================
+- Integrated into OnFileEditFormPrerender, now can use in file editing
+
 CodeMirror 1.0.1
 ====================================
 - Now auto-assigns which_element_editor to CodeMirror
