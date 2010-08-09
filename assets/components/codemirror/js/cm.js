@@ -11,13 +11,22 @@ var Codem = function() {
                              "../contrib/php/js/parsephphtmlmixed.js"]
                 ,stylesheet: [cp+'css/xmlcolors.css',cp+'css/jscolors.css',cp+ 'css/csscolors.css', cp+'contrib/php/css/phpcolors.css']
                 ,path: cp+"js/"
-                ,continuousScanning: 250
+                ,continuousScanning: 50
                 ,onChange: function() {
                     Ext.getCmp(panel).markDirty();
-                    Ext.getCmp(fld).setValue(MODx.editor.getCode());
+                    var v = MODx.editor.getCode();
+                    if (MODx.editor.field == 'modx-tv-default-text' && v == "\n") {
+                        v = '';
+                    }
+                    Ext.getCmp(fld).setValue(v);
                 }
             });
             MODx.editor = CodeMirror.fromTextArea(fld,opt);
+            MODx.editor.field = fld;
+            MODx.onSaveEditor = function(fld) {
+                var v = MODx.editor.getCode();
+                fld.setValue(v);
+            };
             Codem.rteInitialized = true;
             return true;
         }
