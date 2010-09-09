@@ -15,7 +15,7 @@ var Codem = function() {
                 ,onChange: function() {
                     Ext.getCmp(panel).markDirty();
                     var v = MODx.editor.getCode();
-                    if (MODx.editor.field == 'modx-tv-default-text' && v == "\n") {
+                    if (MODx.editor.field == 'modx-tv-default-text' && (v == "\n" || v == "\n " || v == " \n")) {
                         v = '';
                     }
                     Ext.getCmp(fld).setValue(v);
@@ -54,7 +54,8 @@ var Codem = function() {
 
 Ext.onReady(function() {
     MODx.onLoadEditor = Codem[MODx.codem.modx_loader];
-    if (!MODx.request.id) { 
-        setTimeout("MODx.onLoadEditor();",MODx.codem.modx_delay);
-    }
+    MODx.onLoadEditor();
+    //if (!MODx.request.id) {
+//        setTimeout("MODx.onLoadEditor();",MODx.codem.modx_delay);
+  //  }
 });
