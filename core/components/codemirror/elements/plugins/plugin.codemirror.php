@@ -51,6 +51,7 @@ switch ($modx->event->name) {
         $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
         $modx->regClientStartupScript($assetsUrl.'js/cm.js');
         break;
+    /* disabling TVs for now, since it causes problems with newlines
     case 'OnTVFormPrerender':
         $options['modx_loader'] = 'onTV';
         $options['height'] = '250px';
@@ -58,7 +59,7 @@ switch ($modx->event->name) {
         $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
         $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
         $modx->regClientStartupScript($assetsUrl.'js/cm.js');
-        break;
+        break;*/
     case 'OnFileEditFormPrerender':
         $options['modx_loader'] = 'onFile';
         $modx->regClientCSS($assetsUrl.'css/cm.css');
