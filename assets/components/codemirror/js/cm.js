@@ -6,25 +6,23 @@ var Codem = function() {
             var cp = MODx.codem.modx_path+'cm/';
             var opt = MODx.codem;
             Ext.applyIf(opt,{
-                parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js",
-                             "../contrib/php/js/tokenizephp.js", "../contrib/php/js/parsephp.js",
-                             "../contrib/php/js/parsephphtmlmixed.js"]
-                ,stylesheet: [cp+'css/xmlcolors.css',cp+'css/jscolors.css',cp+ 'css/csscolors.css', cp+'contrib/php/css/phpcolors.css']
-                ,path: cp+"js/"
-                ,continuousScanning: 50
-                ,onChange: function() {
+                onChange: function(ed) {
+                    if (!ed) return;
                     Ext.getCmp(panel).markDirty();
-                    var v = MODx.editor.getCode();
-                    if (MODx.editor.field == 'modx-tv-default-text' && (v == "\n" || v == "\n " || v == " \n")) {
-                        v = '';
-                    }
-                    Ext.getCmp(fld).setValue(v);
                 }
+
+                // Zen Coding stuff
+                ,syntax: 'html'
+                ,profile: 'xhtml'
             });
-            MODx.editor = CodeMirror.fromTextArea(fld,opt);
+            fld = Ext.get(fld);
+            MODx.editor = CodeMirror.fromTextArea(fld.dom,opt);
             MODx.editor.field = fld;
+            if (zen_editor) {
+                zen_editor.bind(MODx.editor);
+            }
             MODx.onSaveEditor = function(fld) {
-                var v = MODx.editor.getCode();
+                var v = MODx.editor.getValue();
                 fld.setValue(v);
             };
             Codem.rteInitialized = true;
@@ -55,7 +53,4 @@ var Codem = function() {
 Ext.onReady(function() {
     MODx.onLoadEditor = Codem[MODx.codem.modx_loader];
     MODx.onLoadEditor();
-    //if (!MODx.request.id) {
-//        setTimeout("MODx.onLoadEditor();",MODx.codem.modx_delay);
-  //  }
 });

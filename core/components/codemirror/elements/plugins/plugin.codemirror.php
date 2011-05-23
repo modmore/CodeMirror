@@ -19,59 +19,69 @@ $options = array(
     'textWrapping' => (boolean)$modx->getOption('soft_wrap',$scriptProperties,true),
     'tabMode' => $modx->getOption('tab_mode',$scriptProperties,'shift'),
     'indentUnit' => (int)$modx->getOption('indent_unit',$scriptProperties,2),
+    'matchBrackets' => (boolean)$modx->getOption('match_brackets',$scriptProperties,true),
 );
 
 $load = false;
 switch ($modx->event->name) {
     case 'OnSnipFormPrerender':
         $options['modx_loader'] = 'onSnippet';
-        $modx->regClientCSS($assetsUrl.'css/cm.css');
-        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
-        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
-        $modx->regClientStartupScript($assetsUrl.'js/cm.js');
+        $options['mode'] = 'php';
+        $load = true;
         break;
     case 'OnTempFormPrerender':
         $options['modx_loader'] = 'onTemplate';
-        $modx->regClientCSS($assetsUrl.'css/cm.css');
-        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
-        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
-        $modx->regClientStartupScript($assetsUrl.'js/cm.js');
+        $options['mode'] = 'htmlmixed';
+        $load = true;
         break;
     case 'OnChunkFormPrerender':
         $options['modx_loader'] = 'onChunk';
-        $modx->regClientCSS($assetsUrl.'css/cm.css');
-        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
-        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
-        $modx->regClientStartupScript($assetsUrl.'js/cm.js');
+        $options['mode'] = 'htmlmixed';
+        $load = true;
         break;
     case 'OnPluginFormPrerender':
         $options['modx_loader'] = 'onPlugin';
-        $modx->regClientCSS($assetsUrl.'css/cm.css');
-        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
-        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
-        $modx->regClientStartupScript($assetsUrl.'js/cm.js');
+        $options['mode'] = 'php';
+        $load = true;
         break;
     /* disabling TVs for now, since it causes problems with newlines
     case 'OnTVFormPrerender':
         $options['modx_loader'] = 'onTV';
         $options['height'] = '250px';
-        $modx->regClientCSS($assetsUrl.'css/cm.css');
-        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
-        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
-        $modx->regClientStartupScript($assetsUrl.'js/cm.js');
+        $load = true;
         break;*/
     case 'OnFileEditFormPrerender':
         $options['modx_loader'] = 'onFile';
-        $modx->regClientCSS($assetsUrl.'css/cm.css');
-        $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
-        $modx->regClientStartupScript($assetsUrl.'cm/js/codemirror.js');
-        $modx->regClientStartupScript($assetsUrl.'js/cm.js');
+        $options['mode'] = 'htmlmixed';
+        $load = true;
         break;
     /* debated whether or not to use */
     case 'OnRichTextEditorInit':
         break;
     case 'OnRichTextBrowserInit':
         break;
+}
+
+if ($load) {
+    $modx->regClientCSS($assetsUrl.'cm/lib/codemirror.css');
+    $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
+    $modx->regClientStartupScript($assetsUrl.'cm/lib/codemirror.js');
+
+    $modx->regClientStartupScript($assetsUrl.'cm/mode/javascript/javascript.js');
+    $modx->regClientCSS($assetsUrl.'cm/mode/javascript/javascript.css');
+    $modx->regClientStartupScript($assetsUrl.'cm/mode/css/css.js');
+    $modx->regClientCSS($assetsUrl.'cm/mode/css/css.css');
+
+    $modx->regClientStartupScript($assetsUrl.'cm/mode/xml/xml.js');
+    $modx->regClientCSS($assetsUrl.'cm/mode/xml/xml.css');
+    $modx->regClientStartupScript($assetsUrl.'cm/mode/clike/clike.js');
+    $modx->regClientCSS($assetsUrl.'cm/mode/clike/clike.css');
+    $modx->regClientStartupScript($assetsUrl.'cm/mode/diff/diff.js');
+    $modx->regClientCSS($assetsUrl.'cm/mode/diff/diff.css');
+    $modx->regClientStartupScript($assetsUrl.'cm/mode/php/php.js');
+    $modx->regClientStartupScript($assetsUrl.'cm/mode/htmlmixed/htmlmixed.js');
+
+    $modx->regClientStartupScript($assetsUrl.'js/cm.js');
 }
 
 return;
