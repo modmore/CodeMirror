@@ -14,8 +14,8 @@ set_time_limit(0);
 /* define version */
 define('PKG_NAME','CodeMirror');
 define('PKG_NAMESPACE',strtolower(PKG_NAME));
-define('PKG_VERSION','1.1.0');
-define('PKG_RELEASE','pl');
+define('PKG_VERSION','2.0.0');
+define('PKG_RELEASE','rc1');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';

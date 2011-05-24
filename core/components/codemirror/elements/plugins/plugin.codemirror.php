@@ -10,16 +10,23 @@ if ($modx->getOption('which_element_editor',null,'CodeMirror') != 'CodeMirror') 
 if (!$modx->getOption('use_editor',null,true)) return;
 if (!$modx->getOption('codemirror.enable',null,true)) return;
 
-$assetsUrl = $modx->getOption('codemirror.assets_url',$scriptProperties,$modx->getOption('assets_url').'components/codemirror/');
+$codeMirror = $modx->getService('codemirror','CodeMirror',$modx->getOption('codemirror.core_path',null,$modx->getOption('core_path').'components/codemirror/').'model/codemirror/');
+if (!($codeMirror instanceof CodeMirror)) return '';
+
 
 $options = array(
-    'modx_path' => $assetsUrl,
-    'modx_delay' => $modx->getOption('loader_delay',$scriptProperties,300),
-    'lineNumbers' => (boolean)$modx->getOption('line_numbers',$scriptProperties,true),
-    'textWrapping' => (boolean)$modx->getOption('soft_wrap',$scriptProperties,true),
-    'tabMode' => $modx->getOption('tab_mode',$scriptProperties,'shift'),
-    'indentUnit' => (int)$modx->getOption('indent_unit',$scriptProperties,2),
-    'matchBrackets' => (boolean)$modx->getOption('match_brackets',$scriptProperties,true),
+    'modx_path' => $codeMirror->config['assetsUrl'],
+    'electricChars' => (boolean)$modx->getOption('electricChars',$scriptProperties,true),
+    'enterMode' => $modx->getOption('tabMode',$scriptProperties,'indent'),
+    'firstLineNumber' => (int)$modx->getOption('firstLineNumber',$scriptProperties,1),
+    'highlightLine' => (boolean)$modx->getOption('highlightLine',$scriptProperties,true),
+    'indentUnit' => (int)$modx->getOption('indentUnit',$scriptProperties,$modx->getOption('indent_unit',$scriptProperties,2)),
+    'indentWithTabs' => (boolean)$modx->getOption('indentWithTabs',$scriptProperties,true),
+    'lineNumbers' => (boolean)$modx->getOption('lineNumbers',$scriptProperties,$modx->getOption('line_numbers',$scriptProperties,true)),
+    'matchBrackets' => (boolean)$modx->getOption('matchBrackets',$scriptProperties,true),
+    'showSearchForm' => (boolean)$modx->getOption('showSearchForm',$scriptProperties,true),
+    'tabMode' => $modx->getOption('tabMode',$scriptProperties,$modx->getOption('tab_mode',$scriptProperties,'classic')),
+    'undoDepth' => $modx->getOption('undoDepth',$scriptProperties,40),
 );
 
 $load = false;
@@ -63,25 +70,13 @@ switch ($modx->event->name) {
 }
 
 if ($load) {
-    $modx->regClientCSS($assetsUrl.'cm/lib/codemirror.css');
+    $options['searchTpl'] = $codeMirror->getChunk('search');
+
     $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
-    $modx->regClientStartupScript($assetsUrl.'cm/lib/codemirror.js');
-
-    $modx->regClientStartupScript($assetsUrl.'cm/mode/javascript/javascript.js');
-    $modx->regClientCSS($assetsUrl.'cm/mode/javascript/javascript.css');
-    $modx->regClientStartupScript($assetsUrl.'cm/mode/css/css.js');
-    $modx->regClientCSS($assetsUrl.'cm/mode/css/css.css');
-
-    $modx->regClientStartupScript($assetsUrl.'cm/mode/xml/xml.js');
-    $modx->regClientCSS($assetsUrl.'cm/mode/xml/xml.css');
-    $modx->regClientStartupScript($assetsUrl.'cm/mode/clike/clike.js');
-    $modx->regClientCSS($assetsUrl.'cm/mode/clike/clike.css');
-    $modx->regClientStartupScript($assetsUrl.'cm/mode/diff/diff.js');
-    $modx->regClientCSS($assetsUrl.'cm/mode/diff/diff.css');
-    $modx->regClientStartupScript($assetsUrl.'cm/mode/php/php.js');
-    $modx->regClientStartupScript($assetsUrl.'cm/mode/htmlmixed/htmlmixed.js');
-
-    $modx->regClientStartupScript($assetsUrl.'js/cm.js');
+    $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/codemirror-compressed.css');
+    $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/cm.css');
+    $modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/codemirror-compressed.js');
+    $modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/cm.js');
 }
 
 return;

@@ -1,5 +1,13 @@
 Changelog for CodeMirror integration into MODx Revolution.
 
+CodeMirror 2.0.0
+====================================
+- Compress css/js for faster loading
+- Add search/replace field via showSearchForm property
+- Add line highlighting via highlightLine property
+- Add enterMode, electricChars, firstLineNumber, indentWithTabs, matchBrackets, undoDepth properties for more configuration options
+- Upgrade to CodeMirror 2
+
 CodeMirror 1.1.0
 ====================================
 - Added extra checks and options for ensuring changes get saved

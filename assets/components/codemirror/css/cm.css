@@ -23,3 +23,5 @@
 #x-form-el-modx-tv-default-text .CodeMirror-wrapping {
     border: 1px solid #ddd;
 }
+
+.activeline {background: #f0fcff !important;}
