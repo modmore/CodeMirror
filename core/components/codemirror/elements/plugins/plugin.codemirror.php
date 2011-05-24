@@ -59,7 +59,7 @@ switch ($modx->event->name) {
         break;*/
     case 'OnFileEditFormPrerender':
         $options['modx_loader'] = 'onFile';
-        $options['mode'] = 'htmlmixed';
+        $options['mode'] = 'php';
         $load = true;
         break;
     /* debated whether or not to use */
