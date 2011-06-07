@@ -1,4 +1,4 @@
-.CodeMirror{overflow:auto;height:300px;line-height:1em;font-family:monospace;_position:relative}
+.CodeMirror{overflow:auto;line-height:1em;font-family:monospace;_position:relative}
 .CodeMirror-gutter{position:absolute;left:0;top:0;background-color:#f7f7f7;border-right:1px solid #eee;min-width:2em;height:100%}
 .CodeMirror-gutter-text{color:#aaa;text-align:right;padding:.4em .2em .4em .4em}
 .CodeMirror-lines{padding:.4em}
