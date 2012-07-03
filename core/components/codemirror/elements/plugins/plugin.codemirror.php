@@ -1,5 +1,8 @@
 <?php
 /**
+ * @var modX $modx
+ * @var array $scriptProperties
+ *
  * @package codemirror
  */
 if ($modx->event->name == 'OnRichTextEditorRegister') {
@@ -10,22 +13,27 @@ if ($modx->getOption('which_element_editor',null,'CodeMirror') != 'CodeMirror') 
 if (!$modx->getOption('use_editor',null,true)) return;
 if (!$modx->getOption('codemirror.enable',null,true)) return;
 
+/** @var CodeMirror $codeMirror */
 $codeMirror = $modx->getService('codemirror','CodeMirror',$modx->getOption('codemirror.core_path',null,$modx->getOption('core_path').'components/codemirror/').'model/codemirror/');
 if (!($codeMirror instanceof CodeMirror)) return '';
 
-
 $options = array(
     'modx_path' => $codeMirror->config['assetsUrl'],
+    'theme' => $modx->getOption('theme',$scriptProperties,'default'),
+
+    'indentUnit' => (int)$modx->getOption('indentUnit',$scriptProperties,$modx->getOption('indent_unit',$scriptProperties,2)),
+    'smartIndent' => (boolean)$modx->getOption('smartIndent',$scriptProperties,false),
+    'tabSize' => (boolean)$modx->getOption('tabSize',$scriptProperties,4),
+    'indentWithTabs' => (boolean)$modx->getOption('indentWithTabs',$scriptProperties,true),
     'electricChars' => (boolean)$modx->getOption('electricChars',$scriptProperties,true),
-    'enterMode' => $modx->getOption('tabMode',$scriptProperties,'indent'),
+    'autoClearEmptyLines' => (boolean)$modx->getOption('electricChars',$scriptProperties,false),
+
+    'lineWrapping' => (boolean)$modx->getOption('lineWrapping',$scriptProperties,true),
+    'lineNumbers' => (boolean)$modx->getOption('lineNumbers',$scriptProperties,$modx->getOption('line_numbers',$scriptProperties,true)),
     'firstLineNumber' => (int)$modx->getOption('firstLineNumber',$scriptProperties,1),
     'highlightLine' => (boolean)$modx->getOption('highlightLine',$scriptProperties,true),
-    'indentUnit' => (int)$modx->getOption('indentUnit',$scriptProperties,$modx->getOption('indent_unit',$scriptProperties,2)),
-    'indentWithTabs' => (boolean)$modx->getOption('indentWithTabs',$scriptProperties,true),
-    'lineNumbers' => (boolean)$modx->getOption('lineNumbers',$scriptProperties,$modx->getOption('line_numbers',$scriptProperties,true)),
     'matchBrackets' => (boolean)$modx->getOption('matchBrackets',$scriptProperties,true),
     'showSearchForm' => (boolean)$modx->getOption('showSearchForm',$scriptProperties,true),
-    'tabMode' => $modx->getOption('tabMode',$scriptProperties,$modx->getOption('tab_mode',$scriptProperties,'classic')),
     'undoDepth' => $modx->getOption('undoDepth',$scriptProperties,40),
 );
 
@@ -75,6 +83,9 @@ if ($load) {
     $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
     $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/codemirror-compressed.css');
     $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/cm.css');
+    if ($options['theme'] != 'default') {
+        $modx->regClientCSS($codeMirror->config['assetsUrl'].'cm/theme/'.$options['theme'].'.css');
+    }
     $modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/codemirror-compressed.js');
     $modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/cm.js');
 }

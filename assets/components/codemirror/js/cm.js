@@ -1,12 +1,14 @@
+if(!Ext){Ext = {};}if(!MODx){var MODx={codem:{}};}
+
 var Codem = function() {
     return {
         init: function(fld,panel) {
             if (Codem.rteInitialized) return false;
             Codem.id = fld;
+            Codem.foldFunc = CodeMirror.newFoldFunction(CodeMirror.tagRangeFinder)
 
             var cp = MODx.codem.modx_path+'cm/';
-            var opt = MODx.codem;
-            Ext.applyIf(opt,{
+            Ext.applyIf(MODx.codem,{
                 onChange: function(ed) {
                     if (!ed) return;
                     Ext.getCmp(panel).markDirty();
@@ -14,16 +16,36 @@ var Codem = function() {
 
                 ,syntax: 'html'
                 ,profile: 'xhtml'
+                ,lineWrapping: true
+                ,onGutterClick:Codem.foldFunc
+                ,extraKeys: {
+                    "Ctrl-Q": function(cm){Codem.foldFunc(cm, cm.getCursor().line);}
+                    ,"F6": function(cm) {
+                      Codem.setFullScreen(cm, !Codem.isFullScreen(cm));
+                    }
+                    ,"Esc": function(cm) {
+                      if (Codem.isFullScreen(cm)) Codem.setFullScreen(cm, false);
+                    }
+
+                }
             });
-            if (opt.highlightLine) {
-                opt.onCursorActivity = function() {
-                    MODx.editor.setLineClass(MODx.hlLine, null);
-                    MODx.hlLine = MODx.editor.setLineClass(MODx.editor.getCursor().line, "activeline");
-                };
-            }
+
+            MODx.codem.onCursorActivity = function() {
+                MODx.editor.matchHighlight("CodeMirror-matchhighlight");
+                if (MODx.codem.highlightLine) {
+                    MODx.editor.setLineClass(MODx.hlLine, null, null);
+                    MODx.hlLine = MODx.editor.setLineClass(MODx.editor.getCursor().line,null,"activeline");
+                }
+            };
+            CodeMirror.connect(Ext.getDoc().dom, "resize", function() {
+              var showing = Ext.getBody().dom.getElementsByClassName("CodeMirror-fullscreen")[0];
+              if (!showing) return;
+              showing.CodeMirror.getScrollerElement().style.height = Codem.winHeight() + "px";
+            });
             fld = Ext.get(fld);
-            MODx.editor = CodeMirror.fromTextArea(fld.dom,opt);
-            if (opt.highlightLine) {
+            MODx.editor = CodeMirror.fromTextArea(fld.dom,MODx.codem);
+
+            if (MODx.codem.highlightLine) {
                 MODx.hlLine = MODx.editor.setLineClass(0, "activeline");
             }
             MODx.editor.field = fld;
@@ -33,7 +55,7 @@ var Codem = function() {
                 fld.setValue(v);
             };
             Codem.rteInitialized = true;
-            if (MODx.codem.searchTpl && opt.showSearchForm) {
+            if (MODx.codem.searchTpl && MODx.codem.showSearchForm) {
                 this.addSearchForm();
             }
             return true;
@@ -109,6 +131,26 @@ var Codem = function() {
             if (!text) return;
             for (var cursor = MODx.editor.getSearchCursor(text); cursor.findNext();)
                 MODx.editor.replaceRange(replace, cursor.from(), cursor.to());
+        }
+
+        ,isFullScreen: function(cm) {
+          return /\bCodeMirror-fullscreen\b/.test(cm.getWrapperElement().className);
+        }
+        ,winHeight: function() {
+          return window.innerHeight || (document.documentElement || document.body).clientHeight;
+        }
+        ,setFullScreen: function(cm, full) {
+          var wrap = cm.getWrapperElement(), scroll = cm.getScrollerElement();
+          if (full) {
+            wrap.className += " CodeMirror-fullscreen";
+            scroll.style.height = Codem.winHeight() + "px";
+            document.documentElement.style.overflow = "hidden";
+          } else {
+            wrap.className = wrap.className.replace(" CodeMirror-fullscreen", "");
+            scroll.style.height = "";
+            document.documentElement.style.overflow = "";
+          }
+          cm.refresh();
         }
     };
 }();

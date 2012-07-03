@@ -1,5 +1,17 @@
 Changelog for CodeMirror integration into MODx Revolution.
 
+CodeMirror 2.1.0
+====================================
+- Add match highlighting
+- Add code folding for HTML
+- Add line wrapping
+- Add fullscreen mode (F6 key)
+- Add auto-clear empty lines option
+- Add smart indenting
+- Add over 10 various themes
+- Add code folding for HTML/XML
+- Upgrade CodeMirror to 2.3
+
 CodeMirror 2.0.0
 ====================================
 - Compress css/js for faster loading
