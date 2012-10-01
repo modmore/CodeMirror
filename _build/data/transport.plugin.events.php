@@ -12,6 +12,7 @@ $evs = array(
     'OnTempFormPrerender',
     //'OnTVFormPrerender',
     'OnFileEditFormPrerender',
+    'OnDocFormPrerender',
     'OnRichTextEditorRegister',
     //'OnRichTextEditorInit',
     //'OnRichTextBrowserInit',
