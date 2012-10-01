@@ -89,6 +89,9 @@ var Codem = function() {
         ,onFile: function() {
             return Codem.init('modx-file-content','modx-panel-file-edit');
         }
+        ,onResource: function() {
+            return Codem.init('ta','modx-panel-resource');
+		}
 
 
 
