@@ -9,7 +9,7 @@ if ($modx->event->name == 'OnRichTextEditorRegister') {
     $modx->event->output('CodeMirror');
     return;
 }
-if ($modx->getOption('which_element_editor',null,'CodeMirror') != 'CodeMirror') return;
+if ($modx->getOption('which_element_editor',null,'CodeMirror') != 'CodeMirror' && $modx->getOption('which_editor',null,'CodeMirror') != 'CodeMirror') return;
 if (!$modx->getOption('use_editor',null,true)) return;
 if (!$modx->getOption('codemirror.enable',null,true)) return;
 
@@ -70,6 +70,11 @@ switch ($modx->event->name) {
         $options['mode'] = 'php';
         $load = true;
         break;
+    case 'OnDocFormPrerender':
+        $options['modx_loader'] = 'onResource';
+        $options['mode'] = 'htmlmixed';
+        $load = true;
+    	break;
     /* debated whether or not to use */
     case 'OnRichTextEditorInit':
         break;
