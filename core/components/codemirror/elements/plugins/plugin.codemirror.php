@@ -9,7 +9,25 @@ if ($modx->event->name == 'OnRichTextEditorRegister') {
     $modx->event->output('CodeMirror');
     return;
 }
-if ($modx->getOption('which_element_editor',null,'CodeMirror') != 'CodeMirror' && $modx->getOption('which_editor',null,'CodeMirror') != 'CodeMirror') return;
+
+$eventArray = array(
+    'element'=>array(
+		'OnSnipFormPrerender',
+		'OnTempFormPrerender',
+		'OnChunkFormPrerender',
+		'OnPluginFormPrerender',
+		/*'OnTVFormPrerender'*/
+		'OnFileEditFormPrerender',
+		'OnFileEditFormPrerender',
+		),
+	'other'=>array(
+		'OnDocFormPrerender',
+		'OnRichTextEditorInit',
+		'OnRichTextBrowserInit'
+	)
+);
+if ((in_array($modx->event->name,$eventArray['element']) && $modx->getOption('which_element_editor',null,'CodeMirror') != 'CodeMirror') || (in_array($modx->event->name,$eventArray['other']) && $modx->getOption('which_editor',null,'CodeMirror') != 'CodeMirror')) return;
+
 if (!$modx->getOption('use_editor',null,true)) return;
 if (!$modx->getOption('codemirror.enable',null,true)) return;
 
@@ -71,7 +89,7 @@ switch ($modx->event->name) {
         $load = true;
         break;
     case 'OnDocFormPrerender':
-        $options['modx_loader'] = 'onResource';
+    	$options['modx_loader'] = 'onResource';
         $options['mode'] = 'htmlmixed';
         $load = true;
     	break;
