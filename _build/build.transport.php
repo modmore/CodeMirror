@@ -14,7 +14,7 @@ set_time_limit(0);
 /* define version */
 define('PKG_NAME','CodeMirror');
 define('PKG_NAMESPACE',strtolower(PKG_NAME));
-define('PKG_VERSION','2.1.0');
+define('PKG_VERSION','2.2.0');
 define('PKG_RELEASE','pl');
 
 /* define sources */
