@@ -41,7 +41,7 @@ $options = array(
 
     'indentUnit' => (int)$modx->getOption('indentUnit',$scriptProperties,$modx->getOption('indent_unit',$scriptProperties,2)),
     'smartIndent' => (boolean)$modx->getOption('smartIndent',$scriptProperties,false),
-    'tabSize' => (boolean)$modx->getOption('tabSize',$scriptProperties,4),
+    'tabSize' => (int)$modx->getOption('tabSize',$scriptProperties,4),
     'indentWithTabs' => (boolean)$modx->getOption('indentWithTabs',$scriptProperties,true),
     'electricChars' => (boolean)$modx->getOption('electricChars',$scriptProperties,true),
     'autoClearEmptyLines' => (boolean)$modx->getOption('electricChars',$scriptProperties,false),
