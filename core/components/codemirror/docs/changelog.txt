@@ -3,6 +3,7 @@ Changelog for CodeMirror integration into MODx Revolution.
 CodeMirror 2.2.0
 ====================================
 - [#16] Add Resource editing ability (thanks Jsewill!)
+- [#17] Fix tabSize value conversion
 
 CodeMirror 2.1.0
 ====================================
