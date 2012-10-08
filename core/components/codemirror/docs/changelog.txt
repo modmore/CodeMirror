@@ -1,5 +1,9 @@
 Changelog for CodeMirror integration into MODx Revolution.
 
+CodeMirror 2.2.0
+====================================
+- [#16] Add Resource editing ability (thanks Jsewill!)
+
 CodeMirror 2.1.0
 ====================================
 - Add match highlighting
