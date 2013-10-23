@@ -1,6 +1,6 @@
 .CodeMirror{ line-height:1em;  font-family:monospace;   position:relative;   overflow:hidden}
 
-.CodeMirror-scroll{ overflow-x:auto;  overflow-y:hidden;  min-height:300px; max-height:900px;   position:relative;  outline:none}
+.CodeMirror-scroll{ overflow-x:auto;  overflow-y:hidden;  height:900px;   position:relative;  outline:none}
 
 .CodeMirror-scrollbar{ float:right;  overflow-x:hidden;  overflow-y:scroll;   margin-left:-1px}
 .CodeMirror-scrollbar-inner{  width:1px}
