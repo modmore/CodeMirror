@@ -2,7 +2,7 @@ Changelog for CodeMirror integration into MODx Revolution.
 
 CodeMirror 2.2.1
 ====================================
-- [#21] Make editor comfortable height (900px)
+- [#1] Fix Incompatibility with SimpleSearch
 
 CodeMirror 2.2.0
 ====================================
