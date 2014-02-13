@@ -101,7 +101,7 @@ switch ($modx->event->name) {
 }
 
 if ($load) {
-    $options['searchTpl'] = $codeMirror->getChunk('search');
+    $options['searchTpl'] = $codeMirror->getChunk('codemirror.search');
 
     $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
     $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/codemirror-compressed.css');
