@@ -3,3 +3,8 @@ _build/build.properties.php
 config.core.php
 .idea
 nbproject
+_build/template/codemirror/lib
+bower_components
+node_modules
+.sass-cache
+assets/components/codemirror/cm/demo/fullscreen.html
