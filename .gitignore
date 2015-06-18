@@ -6,5 +6,6 @@ nbproject
 _build/template/codemirror/lib
 bower_components
 node_modules
+npm-debug.log
 .sass-cache
 assets/components/codemirror/cm/demo/fullscreen.html

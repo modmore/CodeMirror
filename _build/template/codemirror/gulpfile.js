@@ -93,7 +93,7 @@ gulp.task('concat', function() {
     config.assetsPath + 'cm/lib/util/' + 'pig-hint.js',
     config.assetsPath + 'cm/lib/util/' + 'runmode.js',
     config.assetsPath + 'cm/lib/util/' + 'search.js',
-    config.assetsPath + 'cm/lib/util/' + 'simplehint.js'
+    config.assetsPath + 'cm/lib/util/' + 'simple-hint.js'
   ])
     .pipe(concat('codemirror-compressed.js'))
     .pipe(gulp.dest(config.assetsPath + 'js'));
