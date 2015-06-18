@@ -1,5 +1,11 @@
 Changelog for CodeMirror integration into MODx Revolution.
 
+CodeMirror 2.3.0
+====================================
+- Font Size Option
+- New System Settings
+- Update to CodeMirror 2.38
+
 CodeMirror 2.2.1
 ====================================
 - [#1] Fix Incompatibility with SimpleSearch
