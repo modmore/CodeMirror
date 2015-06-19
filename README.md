@@ -6,7 +6,7 @@ CodeMirror for MODX&nbsp;Revolution was previously maintained at splittingred/Co
 Install Codemirror via the [MODX&nbsp;Package&nbsp;Manager](http://modx.com/extras/package/codemirror).
 
 ## Configuration
-CodeMirror is configurable through the Properties tab of the CodeMirror Plugin as well as System Settings. For backwards compatibility, CodeMirror will first look at the Properties tab of the CodeMirror Plugin and then if needed fallback to the corresponding System&nbsp;Setting.  
+CodeMirror is now configurable through the Properties tab of the CodeMirror Plugin as well as System Settings. For backwards compatibility, CodeMirror will first look at the Properties tab of the CodeMirror Plugin and then if needed fallback to the corresponding System&nbsp;Setting.  
 System Settings have the advantage of being overridden on the user level. This allows you to set different themes or font sizes for different users. If you'd like CodeMirror to prioritize System (or user) Settings over Properties simply delete the given property in the Properties tab or set its value to the corresponding System Setting eg:&nbsp;`[[++codemirror.fontSize]]`.
 
 | Setting  | Description | Default |
