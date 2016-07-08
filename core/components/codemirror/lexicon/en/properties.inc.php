@@ -24,3 +24,4 @@ $_lang['prop_cm.smartIndent_desc'] = 'Whether to use the context-sensitive inden
 $_lang['prop_cm.theme_desc'] = 'The theme to style the editor with.';
 $_lang['prop_cm.tabSize_desc'] = 'The width of a tab character. Defaults to 4.';
 $_lang['prop_cm.undoDepth_desc'] = 'The maximum number of undo levels that the editor stores.';
+$_lang['prop_cm.fontSize_desc'] = 'FontSize (px) to use for the CodeMirror Editor.';

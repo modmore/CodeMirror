@@ -133,6 +133,14 @@ $properties = array(
         'value' => 40,
         'lexicon' => 'codemirror:properties',
     ),
+    array(
+        'name' => 'fontSize',
+        'desc' => 'prop_cm.fontSize_desc',
+        'type' => 'textfield',
+        'options' => '',
+        'value' => '13px',
+        'lexicon' => 'codemirror:properties',
+    ),
 );
 
 return $properties;

@@ -1,0 +1,28 @@
+{
+  "name": "codemirror",
+  "version": "2.3.0",
+  "description": "Integration for CodeMirror into MODX Revolution",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-bower": "^0.0.10",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-uglify": "^1.2.0",
+    "run-sequence": "^1.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://modxcms/CodeMirror"
+  },
+  "keywords": [
+    "MODX",
+    "CodeMirror"
+  ],
+  "author": "JP DeVries <mail@devries.jp>",
+  "contributors":[
+      "Shaun McCormick <splittingred@gmail.com>",
+      "JP DeVries <mail@devries.jp>"
+  ],
+  "license": "GPL-2.0"
+}

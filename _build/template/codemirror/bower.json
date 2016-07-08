@@ -1,0 +1,26 @@
+{
+  "name": "CodeMirror",
+  "version": "2.3.0",
+  "homepage": "https://github.com/modxcms/CodeMirror",
+  "authors": [
+    "Shaun McCormick <splittingred@gmail.com>",
+    "JP DeVries <mail@devries.jp>"
+  ],
+  "description": "CodeMirror is a JavaScript component that provides a code editor in the browser.",
+  "main": "_build/build.transport.php",
+  "keywords": [
+    "MODX",
+    "CodeMirror"
+  ],
+  "license": "GPL v2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "codemirror": "https://github.com/CodeMirror/CodeMirror.git#v2.38"
+  }
+}

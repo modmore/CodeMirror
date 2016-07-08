@@ -37,22 +37,22 @@ if (!($codeMirror instanceof CodeMirror)) return '';
 
 $options = array(
     'modx_path' => $codeMirror->config['assetsUrl'],
-    'theme' => $modx->getOption('theme',$scriptProperties,'default'),
+    'theme' => $modx->getOption('theme',$scriptProperties,$modx->getOption('codemirror.theme',null,'default')),
+    'indentUnit' => (int)$modx->getOption('indentUnit',$scriptProperties,$modx->getOption('codemirror.indentUnit',null,2)),
+    'smartIndent' => (boolean)$modx->getOption('smartIndent',$scriptProperties,$modx->getOption('codemirror.smartIndent',null,false)),
+    'tabSize' => (int)$modx->getOption('tabSize',$scriptProperties,$modx->getOption('codemirror.tabSize',null,4)),
+    'indentWithTabs' => (boolean)$modx->getOption('indentWithTabs',$scriptProperties,$modx->getOption('codemirror.indentWithTabs',null,true)),
+    'electricChars' => (boolean)$modx->getOption('electricChars',$scriptProperties,$modx->getOption('codemirror.electricChars',null,true)),
+    'autoClearEmptyLines' => (boolean)$modx->getOption('autoClearEmptyLines',$scriptProperties,$modx->getOption('codemirror.autoClearEmptyLines',null,false)),
 
-    'indentUnit' => (int)$modx->getOption('indentUnit',$scriptProperties,$modx->getOption('indent_unit',$scriptProperties,2)),
-    'smartIndent' => (boolean)$modx->getOption('smartIndent',$scriptProperties,false),
-    'tabSize' => (int)$modx->getOption('tabSize',$scriptProperties,4),
-    'indentWithTabs' => (boolean)$modx->getOption('indentWithTabs',$scriptProperties,true),
-    'electricChars' => (boolean)$modx->getOption('electricChars',$scriptProperties,true),
-    'autoClearEmptyLines' => (boolean)$modx->getOption('electricChars',$scriptProperties,false),
-
-    'lineWrapping' => (boolean)$modx->getOption('lineWrapping',$scriptProperties,true),
-    'lineNumbers' => (boolean)$modx->getOption('lineNumbers',$scriptProperties,$modx->getOption('line_numbers',$scriptProperties,true)),
-    'firstLineNumber' => (int)$modx->getOption('firstLineNumber',$scriptProperties,1),
-    'highlightLine' => (boolean)$modx->getOption('highlightLine',$scriptProperties,true),
-    'matchBrackets' => (boolean)$modx->getOption('matchBrackets',$scriptProperties,true),
-    'showSearchForm' => (boolean)$modx->getOption('showSearchForm',$scriptProperties,true),
-    'undoDepth' => $modx->getOption('undoDepth',$scriptProperties,40),
+    'lineWrapping' => (boolean)$modx->getOption('lineWrapping',$scriptProperties,$modx->getOption('codemirror.lineWrapping',null,true)),
+    'lineNumbers' => (boolean)$modx->getOption('lineNumbers',$scriptProperties,$modx->getOption('codemirror.lineNumbers',$scriptProperties,true)),
+    'firstLineNumber' => (int)$modx->getOption('firstLineNumber',$scriptProperties,$modx->getOption('codemirror.firstLineNumber',null,1)),
+    'highlightLine' => (boolean)$modx->getOption('highlightLine',$scriptProperties,$modx->getOption('codemirror.highlightLine',null,true)),
+    'matchBrackets' => (boolean)$modx->getOption('matchBrackets',$scriptProperties,$modx->getOption('codemirror.matchBrackets',null,true)),
+    'showSearchForm' => (boolean)$modx->getOption('showSearchForm',$scriptProperties,$modx->getOption('codemirror.showSearchForm',null,true)),
+    'undoDepth' => $modx->getOption('undoDepth',$scriptProperties,$modx->getOption('codemirror.undoDepth',null,40)),
+    'fontSize' => $modx->getOption('fontSize',$scriptProperties,$modx->getOption('codemirror.fontSize',null,'13px'))
 );
 
 $load = false;
@@ -104,6 +104,7 @@ if ($load) {
     $options['searchTpl'] = $codeMirror->getChunk('codemirror.search');
 
     $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
+    
     $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/codemirror-compressed.css');
     $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/cm.css');
     if ($options['theme'] != 'default') {
@@ -111,6 +112,8 @@ if ($load) {
     }
     $modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/codemirror-compressed.js');
     $modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/cm.js');
+    $fontSize = $options['fontSize'];
+    if(!empty($fontSize)) $modx->regClientStartupHTMLBlock("<style>.CodeMirror { font-size:$fontSize; }</style>");
 }
 
 return;
