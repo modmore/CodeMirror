@@ -1,11 +1,15 @@
-if(!Ext){Ext = {};}if(!MODx){var MODx={codem:{}};}
+if (!Ext) {Ext = {}; }
+if(!MODx) {var MODx = {codem: {}}; }
 
-var Codem = function() {
+var Codem = function () {
     return {
-        init: function(fld,panel) {
-            if (Codem.rteInitialized) return false;
+        init: function (fld, panel) {
+            if (Codem.rteInitialized) {
+                return false;
+            }
+                
             Codem.id = fld;
-            Codem.foldFunc = CodeMirror.newFoldFunction(CodeMirror.tagRangeFinder)
+            //Codem.foldFunc = CodeMirror.newFoldFunction(CodeMirror.tagRangeFinder)
 
             var cp = MODx.codem.modx_path+'cm/';
             Ext.applyIf(MODx.codem,{
@@ -13,11 +17,7 @@ var Codem = function() {
                     if (!ed) return;
                     Ext.getCmp(panel).markDirty();
                 }
-
-                ,syntax: 'html'
-                ,profile: 'xhtml'
                 ,lineWrapping: true
-                ,onGutterClick:Codem.foldFunc
                 ,extraKeys: {
                     "Ctrl-Q": function(cm){Codem.foldFunc(cm, cm.getCursor().line);}
                     ,"F6": function(cm) {
@@ -30,24 +30,12 @@ var Codem = function() {
                 }
             });
 
-            MODx.codem.onCursorActivity = function() {
-                MODx.editor.matchHighlight("CodeMirror-matchhighlight");
-                if (MODx.codem.highlightLine) {
-                    MODx.editor.setLineClass(MODx.hlLine, null, null);
-                    MODx.hlLine = MODx.editor.setLineClass(MODx.editor.getCursor().line,null,"activeline");
-                }
-            };
-            CodeMirror.connect(Ext.getDoc().dom, "resize", function() {
-              var showing = Ext.getBody().dom.getElementsByClassName("CodeMirror-fullscreen")[0];
-              if (!showing) return;
-              showing.CodeMirror.getScrollerElement().style.height = Codem.winHeight() + "px";
-            });
             fld = Ext.get(fld);
             MODx.editor = CodeMirror.fromTextArea(fld.dom,MODx.codem);
 
-            if (MODx.codem.highlightLine) {
+            /*if (MODx.codem.highlightLine) {
                 MODx.hlLine = MODx.editor.setLineClass(0, "activeline");
-            }
+            }*/
             MODx.editor.field = fld;
             
             MODx.onSaveEditor = function(fld) {
