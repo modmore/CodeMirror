@@ -7,10 +7,10 @@ var runSequence = require('run-sequence');
 
 var config = {
     assetsPath: '../../../assets/components/codemirror/',
-    lib:'./lib/'
+    lib: './lib/'
 };
  
-gulp.task('bower', function() {
+gulp.task('bower', function () {
   return bower()
     .pipe(gulp.dest('lib/'))
 });
@@ -95,12 +95,12 @@ gulp.task('concat', function() {
     config.assetsPath + 'cm/lib/util/' + 'search.js',
     config.assetsPath + 'cm/lib/util/' + 'simple-hint.js'
   ])
-    .pipe(concat('codemirror-compressed.js'))
+    .pipe(concat('codemirror.js'))
     .pipe(gulp.dest(config.assetsPath + 'js'));
 });
  
 gulp.task('uglify', function() {
-  return gulp.src(config.assetsPath + 'js/codemirror-compressed.js')
+  return gulp.src(config.assetsPath + 'js/codemirror.js')
     .pipe(uglify())
     .pipe(gulp.dest(config.assetsPath + 'js'));
 });

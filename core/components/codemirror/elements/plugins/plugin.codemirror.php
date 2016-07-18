@@ -105,12 +105,24 @@ if ($load) {
 
     $modx->regClientStartupHTMLBlock('<script type="text/javascript">MODx.codem = '.$modx->toJSON($options).';</script>');
     
-    $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/codemirror-compressed.css');
-    $modx->regClientCSS($codeMirror->config['assetsUrl'].'css/cm.css');
-    if ($options['theme'] != 'default') {
-        $modx->regClientCSS($codeMirror->config['assetsUrl'].'cm/theme/'.$options['theme'].'.css');
-    }
-    $modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/codemirror-compressed.js');
+    //$modx->regClientCSS($codeMirror->config['assetsUrl'].'css/codemirror.css');
+    $modx->regClientCSS('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.min.css');
+    //$modx->regClientCSS($codeMirror->config['assetsUrl'].'css/cm.css');
+    //$modx->regClientCSS($codeMirror->config['assetsUrl'].'css/cm.css');
+    //if ($options['theme'] != 'default') {
+    //    $modx->regClientCSS($codeMirror->config['assetsUrl'].'cm/theme/'.$options['theme'].'.css');
+    //}
+    //$modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/codemirror-compressed.js');
+    //$modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/cm.js');
+    $modx->regClientStartupScript('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.min.js');
+
+    $modx->regClientStartupScript('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/xml/xml.min.js');
+    $modx->regClientStartupScript('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/htmlmixed/htmlmixed.min.js');
+    $modx->regClientStartupScript('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/clike/clike.min.js');
+    $modx->regClientStartupScript('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/javascript/javascript.min.js');
+	$modx->regClientStartupScript('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/css/css.min.js');
+    $modx->regClientStartupScript('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/php/php.min.js');
+    $modx->regClientStartupScript('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/addon/edit/matchbrackets.min.js');
     $modx->regClientStartupScript($codeMirror->config['assetsUrl'].'js/cm.js');
     $fontSize = $options['fontSize'];
     if(!empty($fontSize)) $modx->regClientStartupHTMLBlock("<style>.CodeMirror { font-size:$fontSize; }</style>");
